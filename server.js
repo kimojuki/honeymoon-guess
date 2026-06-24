@@ -74,8 +74,14 @@ function broadcastRoom(roomCode) {
   io.to(roomCode).emit('roomUpdate', getRoomState(room));
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
+const publicDir = path.join(__dirname, 'public');
+
+app.use(express.static(publicDir));
 app.use('/vendor/leaflet', express.static(path.join(__dirname, 'node_modules/leaflet/dist')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDir, 'index.html'));
+});
 
 io.on('connection', (socket) => {
   socket.on('createRoom', ({ adminName }, cb) => {
