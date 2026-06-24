@@ -114,7 +114,7 @@ function initMap() {
     zoomControl: true,
     minZoom: 2,
     maxZoom: 12,
-  }).setView([20, 0], 2);
+  }).setView([30, 10], 3);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap',
