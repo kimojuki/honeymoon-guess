@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Où sera notre lune de miel ?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <!-- Écran d'accueil -->
+  <section id="screen-home" class="screen active">
+    <div class="home-card">
+      <p class="eyebrow">Jeu multijoueur</p>
+      <h1>Où sera notre<br /><em>lune de miel</em> ?</h1>
+      <p class="subtitle">Placez votre repère sur la carte. Le plus proche de Majorque gagne.</p>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="create">Créer une partie</button>
+        <button class="tab" data-tab="join">Rejoindre</button>
+      </div>
+
+      <div id="panel-create" class="panel active">
+        <label>Votre prénom (admin)</label>
+        <input type="text" id="admin-name" placeholder="Georges" maxlength="24" />
+        <button id="btn-create" class="btn-primary">Lancer la partie</button>
+      </div>
+
+      <div id="panel-join" class="panel">
+        <label>Code de la partie</label>
+        <input type="text" id="join-code" placeholder="ABC123" maxlength="6" style="text-transform:uppercase" />
+        <label>Votre prénom</label>
+        <input type="text" id="join-name" placeholder="Marie" maxlength="24" />
+        <button id="btn-join" class="btn-primary">Rejoindre</button>
+      </div>
+
+      <p id="home-error" class="error hidden"></p>
+    </div>
+  </section>
+
+  <!-- Écran de jeu -->
+  <section id="screen-game" class="screen">
+    <header class="game-header">
+      <div class="brand">
+        <span class="brand-icon">🌴</span>
+        <div>
+          <strong>Lune de miel</strong>
+          <span id="room-code-display">------</span>
+        </div>
+      </div>
+      <div id="status-badge" class="badge badge-open">En cours</div>
+    </header>
+
+    <div class="game-layout">
+      <aside class="sidebar">
+        <div class="sidebar-block">
+          <h2>Joueurs</h2>
+          <ul id="players-list"></ul>
+        </div>
+
+        <div id="instructions" class="sidebar-block instructions">
+          <p>Cliquez sur la carte pour placer votre repère. Vous pouvez le déplacer tant que l'admin n'a pas validé.</p>
+        </div>
+
+        <div id="admin-panel" class="sidebar-block admin-panel hidden">
+          <h2>Admin</h2>
+          <p>Quand tout le monde a joué, validez pour révéler les résultats.</p>
+          <button id="btn-validate" class="btn-validate">Valider la partie</button>
+        </div>
+
+        <div id="results-panel" class="sidebar-block results-panel hidden">
+          <h2>Résultats</h2>
+          <div id="winner-banner" class="winner-banner hidden"></div>
+          <ol id="results-list"></ol>
+        </div>
+      </aside>
+
+      <main class="map-wrap">
+        <div id="map"></div>
+        <div id="map-hint" class="map-hint">Cliquez pour placer votre repère</div>
+      </main>
+    </div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

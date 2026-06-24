@@ -1,0 +1,15 @@
+{
+  "name": "honeymoon-guess",
+  "version": "1.0.0",
+  "description": "Jeu multijoueur — devinez où sera la lune de miel à Majorque",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "leaflet": "^1.9.4",
+    "socket.io": "^4.8.1"
+  }
+}
